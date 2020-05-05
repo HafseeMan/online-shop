@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/all.css">
+	<link rel="stylesheet" href="css/fonts.css">
+	<link rel="stylesheet" href="css/styles_sidebar.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>ONLINE SHOP</title>
+
+    <style>
+        img{
+            display: inline;
+            width: 100%;
+        }
+        .card{
+            width: auto;
+        }
+    </style>
+</head>
+<body class="bg-dark">
+    <header class="sticky-top bg-light text-center">
+        ADD TO CART. LETS SHOP!<br>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+        <button id='showCart' class="bg-warning pd-3 text-light float-left" style=" padding: 0.5em; top: 0;" onclick="showCart()">
+            GO TO CART
+        </button>
+         <button id='exitCart' class="bg-danger pd-3 text-light float-left" style=" padding: 0.5em; top: 0; display: none;" onclick="exitCart()">
+            EXIT CART
+        </button>
+    </header>
+
+    
+    <div id="cart" class="container mx-auto bg-white text-center pb-50 text-dark" style="display: none; padding: 1em; margin-top: 1em;">
+       
+        <h3>MY CART</h3>
+        <div style=" min-height: 100px;">
+          <table style='width:100%;'>
+            <thead>
+              <tr>
+                
+                <th>Shopping item</th>
+                <th>Amount</th>
+                <th>Price</th>
+                <th></th> <!--delete btn-->
+              </tr>
+            </thead>
+            <tbody id="shop-list">
+                <tr>
+                    <td>DRESS 1</td>
+                    <td><input type="number"></td>
+                    <td>2500</td>
+                    <td><a href="#" class="delete">X<a></td>
+                </tr>
+
+            </tbody>
+          </table>
+        </div>
+       
+          <h3 class="text-danger float-right">TOTAL PRICE: N <span id='finalPrice'> 0</span></h3>
+          <button class="bg-success inline-block text-light" id="buy-btn" style="width: 25%;"> BUY </button>
+    </div>
+        
+    <div class="container" id="content">
+        <div class="row">
+            <div class="col-md-4 ">
+                <div class="card card-body text-center mt-5">
+                    <h2 class="heading">DRESS 1</h2>
+                    <div style="overflow: hidden;">
+                        <img src="imgs/item2.jpg" class="square">
+                    </div>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    </p>
+                    <h3>N <span class="price">2500</span></h3>
+                    <button class="bg-success text-light p-2">ADD TO CART</button>
+                </div>
+            </div>
+            <div class="col-md-4 ">
+                <div class="card card-body text-center mt-5">
+                    <h2 class="heading">DRESS 2</h2>
+                    <div style="overflow: hidden;" class="square">
+                        <img src="imgs/item1.jpg">
+                    </div>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    </p>
+                    <h3>N <span class="price">5000</span></h3>
+                    <button class="bg-success text-light p-2">ADD TO CART</button>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-body text-center mt-5">
+                    <h2 class="heading">DRESS 3</h2>
+                    <div style="overflow: hidden;">
+                        <img src="imgs/item3.jpg" class="square">
+                    </div>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    </p>
+                    <h3>N <span class="price">2500</span></h3>
+                    <button class="bg-success text-light p-2">ADD TO CART</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+<script src="app.js"></script>
+</body>
+</html>
