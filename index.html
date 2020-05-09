@@ -17,8 +17,17 @@
             display: inline;
             width: 100%;
         }
+        .cart-img{
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+        }
         .card{
             width: auto;
+        }
+        .quantity-input{
+            width: 100px; 
+            text-align: center;
         }
     </style>
 </head>
@@ -40,8 +49,8 @@
         <div style=" min-height: 100px;">
           <table style='width:100%;'>
             <thead>
-              <tr>
-                
+              <tr style="border-bottom: 3px solid #333;">
+                <th></th>
                 <th>Shopping item</th>
                 <th>Amount</th>
                 <th>Price</th>
@@ -50,8 +59,9 @@
             </thead>
             <tbody id="shop-list">
                 <tr>
+                    <td><img src='imgs/item1.jpg' class="cart-img"></td>
                     <td>DRESS 1</td>
-                    <td><input type="number"></td>
+                    <td><input type="number" value= '1' class= 'quantity-input'></td>
                     <td>2500</td>
                     <td><a href="#" class="delete">X<a></td>
                 </tr>
@@ -66,46 +76,58 @@
         
     <div class="container" id="content">
         <div class="row">
-            <div class="col-md-4 ">
+            <div class="col-md-3 ">
                 <div class="card card-body text-center mt-5">
-                    <h2 class="heading">DRESS 1</h2>
+                    <h2 class="itemName">DRESS 1</h2>
                     <div style="overflow: hidden;">
-                        <img src="imgs/item2.jpg" class="square">
+                        <img src="imgs/item2.jpg" class="image square">
                     </div>
                     <p>
                         Lorem ipsum dolor sit amet consectetur adipisicing elit.
                     </p>
                     <h3>N <span class="price">2500</span></h3>
-                    <button class="bg-success text-light p-2">ADD TO CART</button>
+                    <button class="addBtn bg-success text-light p-2">ADD TO CART</button>
                 </div>
             </div>
-            <div class="col-md-4 ">
+            <div class="col-md-3 ">
                 <div class="card card-body text-center mt-5">
-                    <h2 class="heading">DRESS 2</h2>
+                    <h2 class="itemName">DRESS 2</h2>
                     <div style="overflow: hidden;" class="square">
-                        <img src="imgs/item1.jpg">
+                        <img src="imgs/item1.jpg" class="image">
+                    </div>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    </p>
+                    <h3>N <span class="price">7500</span></h3>
+                    <button class="addBtn bg-success text-light p-2">ADD TO CART</button>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card card-body text-center mt-5">
+                    <h2 class="itemName">DRESS 3</h2>
+                    <div style="overflow: hidden;">
+                        <img src="imgs/item3.jpg" class="image square">
+                    </div>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    </p>
+                    <h3>N <span class="price">2500</span></h3>
+                    <button class="addBtn bg-success text-light p-2">ADD TO CART</button>
+                </div>
+            </div>
+            <div class="col-md-3 ">
+                <div class="card card-body text-center mt-5">
+                    <h2 class="itemName">DRESS 4</h2>
+                    <div style="overflow: hidden;">
+                        <img src="imgs/item4.jpg" class="image square">
                     </div>
                     <p>
                         Lorem ipsum dolor sit amet consectetur adipisicing elit.
                     </p>
                     <h3>N <span class="price">5000</span></h3>
-                    <button class="bg-success text-light p-2">ADD TO CART</button>
+                    <button class="addBtn bg-success text-light p-2">ADD TO CART</button>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="card card-body text-center mt-5">
-                    <h2 class="heading">DRESS 3</h2>
-                    <div style="overflow: hidden;">
-                        <img src="imgs/item3.jpg" class="square">
-                    </div>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    </p>
-                    <h3>N <span class="price">2500</span></h3>
-                    <button class="bg-success text-light p-2">ADD TO CART</button>
-                </div>
-            </div>
-
         </div>
     </div>
 
