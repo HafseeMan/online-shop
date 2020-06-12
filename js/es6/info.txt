@@ -1,0 +1,26 @@
+ES6:
+CREATED 3 CLASSES:
+1. UI: with methods:
+   i) addToCart
+   ii) delete
+   iii)calculateTotal
+   iv) changeQuantity
+   v) pay
+
+2. ITEM: containing properties of item object: name, price and src
+
+3. STORE: containing all local storage related methods defined.
+
+___
+
+*es6.js
+
+    *Added event handlers and grabbed items to apply UI methods to.
+    *stored all items in shop in an array ..itemsArray: with their respective ids.
+    *used Find(x) to return the shopping item object selected.
+    
+
+
+*ISSUES:
+1. cart shouldnt have duplicated items
+2. appearance in mobile view
