@@ -16,6 +16,7 @@ class UI {
         list.append(newItem)
         ui.updateCartTotal()
     }
+    /*
     check_for_in_store(item){
         let store_memory = JSON.parse(window.localStorage.getItem("store_items"));
         for(let i = 0; i<store_memory.length; i++){
@@ -31,6 +32,7 @@ class UI {
             }
         }
     }
+    */
     deleteItem(target) {
         if (target.classList.contains('delete')){
             target.parentElement.parentElement.remove();

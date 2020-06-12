@@ -25,8 +25,8 @@ function find(x) {
             }
         }
 }
-// DOM Load Event
 
+// DOM Load Event
 document.addEventListener('DOMContentLoaded', Store.displayItems);
 
 //EVENT LISTENER
@@ -37,7 +37,7 @@ for (var i=0; i<addBtns.length; i++){
     button.addEventListener('click', (e) => {
         var x = e.target.parentElement.id;
         let item = find(x);
-        ui.check_for_in_store(item);
+      // ui.check_for_in_store(item);
         ui.addToCart(item);
         ui.updateCartTotal();
         Store.addItem(item);
