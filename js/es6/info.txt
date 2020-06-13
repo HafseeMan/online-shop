@@ -24,3 +24,13 @@ ___
 *ISSUES:
 1. cart shouldnt have duplicated items
 2. appearance in mobile view
+
+*WHAT I HAVE DONE
+1. Updated the styles a bit to be more responsive on mobile
+
+*OBSERVATIONS
+1. You are depending on HTML to perform operations instead of your store data
+2. You don't clear the store after the user buys
+3. After adding to cart, no action shows that it was successful
+4. Items should not just be gotten from HTML, you should declare a class with the default items and then read from there to HTML instead of having all the items defined on HTML
+
