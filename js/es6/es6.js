@@ -86,14 +86,14 @@ var content = document.getElementById('content');//rest of container
 function display_cart(){
     if(event.target.id == "showCart"){
         cart.style.display='block';
-        exitBtn.style.display='block';
+        exitBtn.style.display='inline';
         showBtn.style.display='none'; 
         content.style.display='none';
     }
     else{ //for exitCart btn
         exitBtn.style.display='none';    
         cart.style.display='none';
-        showBtn.style.display='block'; 
+        showBtn.style.display='inline'; 
         content.style.display='block';
     }
 }

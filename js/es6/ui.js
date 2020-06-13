@@ -61,7 +61,8 @@ class UI {
             var x = parseFloat(document.getElementById("cart-table").rows[i].children[3].innerHTML);
             total += x;   
         }
-        document.getElementById("finalPrice").innerHTML = total;
+        
+        document.getElementById("finalPrice").innerHTML = 'N'+total;
     }
 
     purchaseClicked() {
