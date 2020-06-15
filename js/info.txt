@@ -1,0 +1,52 @@
+ES6:
+CREATED 3 CLASSES:
+1. UI: with methods:
+   i) addToCart
+   ii) delete
+   iii)calculateTotal
+   iv) changeQuantity
+   v) pay
+
+2. ITEM: containing properties of item object: name, price and src
+
+3. STORE: containing all local storage related methods defined.
+
+___
+
+*es6.js
+
+    *Added event handlers and grabbed items to apply UI methods to.
+    *stored all items in shop in json file ..with their respective properties.
+    *used Find(x) to return the shopping item object selected in UI.
+    
+
+
+*ISSUES:
+1. cart shouldnt have duplicated items
+2. appearance in mobile view
+
+************* DATE: 13TH JUNE, 2020 ************* 
+*WHAT I HAVE DONE
+1. Updated the styles a bit to be more responsive on mobile
+
+*OBSERVATIONS
+1. You are depending on HTML to perform operations instead of your store data
+2. You don't clear the store after the user buys
+3. After adding to cart, no action shows that it was successful
+4. Items should not just be gotten from HTML, you should declare a class with the default items and then read from there to HTML instead of having all the items defined on HTML
+5. create a button to clear cart
+
+************* DATE: 15TH JUNE, 2020 *************
+LATEST CORRECTIONS: (ME)
+1.(done) Saved all Shop items in json file
+2. (done) Item cards in html are now made dynamically. Items stored in JSON would be added to interface using ui.loadShopItems().
+3.(issue) Add to card button adjusted to work on cards
+    :(-- returns the item object as undefined in function and cart. Problem in ui.js line 62
+4. Green "Add to card" button toggles to Red "ADDED" button to indicate when items are added;
+    :(-- how to toggle back when item is deleted or cleared from cart? traversing? how to link the item in the cart to the card?
+5. (issue) Added a clear cart button :(-- only deletes one item at a time. Whats wrong with for loop in es6.js line 49
+
+
+notes:
+1. json file must be in same dir level as index
+2. using a functiom defined in the same class in another function must use 'this."

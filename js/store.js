@@ -1,4 +1,4 @@
-class Store {  
+class Store {  //Local storage
     static getItems() {
         let store_items;
         if(localStorage.getItem('store_items') === null) {
