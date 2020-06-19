@@ -1,8 +1,12 @@
 class UI {
     find(x, addItemFunction, target) {
+        //x is the item to search for
+        //additemFunction is the function to use the output
+        //target 
+
         const xhr = new XMLHttpRequest();
         xhr.open('GET', 'shop.json', true);
-    
+        
         xhr.onload = function(){
             if(this.status === 200){
                 const itemsArray = JSON.parse(this.responseText);
@@ -54,13 +58,10 @@ class UI {
 
     addToCart(target){
         if(target.classList.contains('addBtn')){
-            //ERROR! RETURNS ITEM AS UNDEFINED. BUT FIND(X) WORKS FINE.
             var x = target.id;
             this.find(x, this.addTheItem, target);
         }
-        // if(target.classList.contains('bg-danger')){
-        //     // alert('ALREADY ADDED. DELETE FROM CART TO REMOVE')
-        // }
+        
     }
 
     addTheItem(item, target){
@@ -102,7 +103,10 @@ class UI {
             target.parentElement.parentElement.remove();
 
             let object_targeted = target.classList[1];
-            Store.removeItem((ui.find(object_targeted)).id)
+            
+            this.find(object_targeted.id, Store.removeItem, target)
+            //remove(id)
+           // Store.removeItem((ui.find(object_targeted)).id)
             //*************buttonChange
         }
     }
