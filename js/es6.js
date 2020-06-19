@@ -8,10 +8,6 @@ const ui = new UI();
 //storing all shopping item objects in array
 ui.loadShopItems()
 
-
-// DOM Load Event
-document.addEventListener('DOMContentLoaded', Store.displayItems);
-
 //EVENT LISTENER
 var container = document.getElementById('content');
 
@@ -100,4 +96,7 @@ function display_cart(){
         content.style.display='block';
     }
 }
+
+// DOM Load Event
+// document.addEventListener('DOMContentLoaded', Store.displayItems);
 

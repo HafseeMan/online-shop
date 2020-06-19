@@ -12,15 +12,11 @@ class Store {  //Local storage
 
     static displayItems(){
         const store_items = Store.getItems();
-
         store_items.forEach(function(item){
           const ui  = new UI;
         
           // Add book to UI
-          console.log("Item " + item)
-          var element = document.getElementById(item.id);
-          console.log("Element " + element)
-            ui.addToCart(element);
+          ui.reloadAddToCart(item);
         });
     }
 
