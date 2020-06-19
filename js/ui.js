@@ -46,6 +46,8 @@ class UI {
                     });
         
                     document.getElementsByClassName('row')[0].innerHTML = output; 
+
+                    Store.displayItems();
                 }
             }
         
@@ -62,6 +64,15 @@ class UI {
         //     // alert('ALREADY ADDED. DELETE FROM CART TO REMOVE')
         // }
     }
+
+    reloadAddToCart(item){
+        if(item){
+            var target = document.getElementById(item.id);
+            this.addTheItem(item, target);
+        }
+    }
+
+
 
     addTheItem(item, target){
         var list = document.getElementById('shop-list');
@@ -94,7 +105,7 @@ class UI {
     }    
     
     added_alert(){
-        alert('SUCCESSFULLY ADDED')
+        // alert('SUCCESSFULLY ADDED')
     }
 
     deleteItem(target) {
