@@ -2,13 +2,12 @@ class Store {  //Local storage
     static getItems() {
         let store_items;
         if(localStorage.getItem('store_items') === null) {
-        store_items = [];
+            store_items = [];
         } else {
-        store_items = JSON.parse(localStorage.getItem('store_items'));
+            store_items = JSON.parse(localStorage.getItem('store_items'));
         }
 
         return store_items;
-
     }
 
     static displayItems(){
@@ -16,9 +15,12 @@ class Store {  //Local storage
 
         store_items.forEach(function(item){
           const ui  = new UI;
-    
+        
           // Add book to UI
-          ui.addToCart(item);
+          console.log("Item " + item)
+          var element = document.getElementById(item.id);
+          console.log("Element " + element)
+            ui.addToCart(element);
         });
     }
 

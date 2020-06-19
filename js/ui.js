@@ -1,26 +1,22 @@
 class UI {
-    find(x) {
+    find(x, addItemFunction, target) {
         const xhr = new XMLHttpRequest();
-    
         xhr.open('GET', 'shop.json', true);
     
         xhr.onload = function(){
             if(this.status === 200){
                 const itemsArray = JSON.parse(this.responseText);
-                
-                for(let i=0; i<itemsArray.length;  i++){
+                for(let i = 0; i < itemsArray.length;  i++){
                     if(itemsArray[i].id == x){
-                        return itemsArray[i];
+                        addItemFunction(itemsArray[i], target)
                     }
                 }
             }
-    
         }
         xhr.send();
-        
     }
     
-     loadShopItems(){
+    loadShopItems(){
             const xhr = new XMLHttpRequest();
 
             xhr.open('GET', 'shop.json', true);
@@ -34,7 +30,7 @@ class UI {
                     items.forEach(item => {
                         output += `
                     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 ">
-                        <div class="card card-body text-center mt-5" id="${item.id}">
+                        <div class="card card-body text-center mt-5">
                             <h2 class="itemName">${item.name}</h2>
                             <div style="overflow: hidden;" class="square">
                                 <img src="imgs/${item.src}" class="image">
@@ -43,7 +39,7 @@ class UI {
                                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
                             </p>
                             <h3>N <span class="price">${item.price}</span></h3>
-                            <button class="addBtn bg-success text-light p-2">ADD TO CART</button>
+                            <button class="addBtn bg-success text-light p-2" id="${item.id}">ADD TO CART</button>
                         </div>
                     </div>
                         `;
@@ -57,36 +53,34 @@ class UI {
     }
 
     addToCart(target){
-
         if(target.classList.contains('addBtn')){
             //ERROR! RETURNS ITEM AS UNDEFINED. BUT FIND(X) WORKS FINE.
-            var x = target.parentElement.id;
-            let item = find(x);
-              
-            var list = document.getElementById('shop-list');
-            var newItem = document.createElement('tr');
-            var newCartItem = `
-                
-                    <td><img src='imgs/${item.src}' class="cart-img"></td>
-                    <td>${item.name}</td>
-                    <td><input value= '1' class= '${item.id} quantity-input' type='number'></td>
-                    <td class="item_price">${item.price}</td>
-                    <td><a href="#" class="delete ${item.id} text-danger">X<a></td>
-                
-                    `
-
-            newItem.innerHTML = newCartItem;
-            list.append(newItem)
-            ui.updateCartTotal()
-            Store.addItem(item);
-            ui.added_alert()
-            ui.buttonChange(target)
+            var x = target.id;
+            this.find(x, this.addTheItem, target);
         }
-        if(target.classList.contains('bg-danger')){
-            alert('ALREADY ADDED. DELETE FROM CART TO REMOVE')
-        }
-       
+        // if(target.classList.contains('bg-danger')){
+        //     // alert('ALREADY ADDED. DELETE FROM CART TO REMOVE')
+        // }
+    }
 
+    addTheItem(item, target){
+        var list = document.getElementById('shop-list');
+        var newItem = document.createElement('tr');
+        var newCartItem = `
+                <td><img src='imgs/${item.src}' class="cart-img"></td>
+                <td>${item.name}</td>
+                <td><input value= '1' class= '${item.id} quantity-input' type='number'></td>
+                <td class="item_price">${item.price}</td>
+                <td><a href="#" class="delete ${item.id} text-danger">X<a></td>
+            
+                `
+
+        newItem.innerHTML = newCartItem;
+        list.append(newItem)
+        ui.updateCartTotal()
+        Store.addItem(item);
+        ui.added_alert()
+        ui.buttonChange(target)
     }
 
     buttonChange(target){
@@ -95,7 +89,7 @@ class UI {
             target.classList.replace('addBtn','addedBtn')
             target.classList.replace('bg-success','bg-danger')
            
-            target.innerText = 'ADDED TO CART'
+            target.innerText = 'REMOVE FROM CART'
         }
     }    
     
