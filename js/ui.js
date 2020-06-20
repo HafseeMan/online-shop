@@ -1,5 +1,5 @@
 class UI {
-    find(x, addItemFunction, target) {
+     find(x, addItemFunction, target) {
         //x is the item to search for
         //additemFunction is the function to use the output
         //target 
@@ -18,6 +18,7 @@ class UI {
             }
         }
         xhr.send();
+        console.log("should work")
     }
     
     loadShopItems(){
@@ -91,7 +92,6 @@ class UI {
         list.append(newItem)
         ui.updateCartTotal()
         Store.addItem(item);
-        ui.added_alert()
         ui.buttonChange(target)
     }
 
@@ -103,34 +103,43 @@ class UI {
            
             target.innerText = 'REMOVE FROM CART'
         }
+
     }    
     
-    added_alert(){
-        // alert('SUCCESSFULLY ADDED')
-    }
-
     deleteItem(target) {
         if (target.classList.contains('delete')){
+            
             target.parentElement.parentElement.remove();
 
-            let object_targeted = target.classList[1];
+            let id = target.classList[1];
+
+            this.find(id, this.deleteTheItem, target)
+            //(pending) change addtocart button
+            //this.buttonChange(target)
             
-            this.find(object_targeted.id, Store.removeItem, target)
-            //remove(id)
-           // Store.removeItem((ui.find(object_targeted)).id)
-            //*************buttonChange
+            Store.removeItem((ui.find(object_targeted)).id)
         }
     }
-    
-    quantityChange(target , item) {
+    deleteTheItem(item, target){
+        Store.remove(item)
+    }
+
+    quantityChange(target){
+        let itemID = target.classList[0];
+        this.find(itemID, quantityTheChange, target);
+    }
+    quantityTheChange(item, target){
+        let newPrice = 0;
+
         if(target.classList.contains('quantity-input')){
             if (isNaN(target.value) || target.value <= 0) {
             target.value = 1;
             }
             
-            return item.price * target.value;
+            newPrice =  item.price * target.value;
 
         }
+        e.target.parentElement.nextSibling.nextSibling.innerHTML = newPrice;
     }
 
     updateCartTotal() {

@@ -5,7 +5,7 @@
 //initializing
 const ui = new UI();
 
-//storing all shopping item objects in array
+//showing all shopping item objects in array
 ui.loadShopItems()
 
 //EVENT LISTENER
@@ -17,19 +17,6 @@ container.addEventListener('click', (e) => {
     e.preventDefault();
 });
 
-/* 
-Before: 
-for (var i=0; i<addBtns.length; i++){
-    var button = addBtns[i];
-    button.addEventListener('click', (e) => {
-        var x = e.target.parentElement.id;
-        let item = find(x);
-        ui.addToCart(item);
-        ui.updateCartTotal();
-        Store.addItem(item);
-    }); 
-    
-}*/
 //delete from cart
 document.getElementById("cart").addEventListener('click', (e) => {
     
@@ -53,13 +40,7 @@ document.getElementById('clear-btn').addEventListener('click', (e) => {
 
 //cart quantity change
 document.getElementById("cart").addEventListener('change', (e) => {
-    // find the item object targeted.. from array. 
-    let itemID = e.target.classList[0]; //class name = name in array
-    let object_targeted = ui.find(itemID); 
-
-    let newPrice = ui.quantityChange(e.target, object_targeted);
-    e.target.parentElement.nextSibling.nextSibling.innerHTML = newPrice;
-
+    ui.quantityChange(e.target);
     ui.updateCartTotal();
 });
 
