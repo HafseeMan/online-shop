@@ -28,8 +28,8 @@ class Store {  //Local storage
         localStorage.setItem('store_items', JSON.stringify(store_items));
     }
 
-    static removeItem(item, target){
-        let id = item.id
+    static removeItem(item_id){
+        let id = item_id
         const store_items = Store.getItems();
 
         store_items.forEach(function(item, index){

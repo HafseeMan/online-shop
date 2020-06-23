@@ -12,29 +12,31 @@ ui.loadShopItems()
 var container = document.getElementById('content');
 
 container.addEventListener('click', (e) => {
-//add to cart button  
+    //add to cart button  
     ui.addToCart(e.target);
     e.preventDefault();
 });
 
 //delete from cart
 document.getElementById("cart").addEventListener('click', (e) => {
-    
-    ui.deleteItem(e.target);
+    //Click on delete from cart
+    ui.deleteClickFromCart(e.target);
+
     e.preventDefault();
+
     ui.updateCartTotal()
 });
 
 //clear all from cart
 document.getElementById('clear-btn').addEventListener('click', (e) => {
-    
-    
     deleteBtns = document.getElementsByClassName('delete');
-    for(i=0; i<deleteBtns.length; i++){
+    console.log(deleteBtns)
+    for(i = 0; i <= deleteBtns.length; i++){
         // :( only deletes last item
-        ui.deleteItem(deleteBtns[i])
+        ui.deleteClickFromCart(deleteBtns[i])
         // :( link to item's card to toggle the button back to green "ADD TO CART" how?
     }
+
     e.preventDefault();
 });
 
@@ -46,7 +48,7 @@ document.getElementById("cart").addEventListener('change', (e) => {
 
 //calculate cart total
 document.getElementById("shop-list").addEventListener('submit', (e) => {
-    ui.updateCartTotal()
+    ui.updateCartTotal();
 });
 
 //purchase made
@@ -80,4 +82,3 @@ function display_cart(){
 
 // DOM Load Event
 // document.addEventListener('DOMContentLoaded', Store.displayItems);
-

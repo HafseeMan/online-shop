@@ -1,7 +1,7 @@
 class UI {
-     find(x, addItemFunction, target) {
+    find(x, functionToExecute, target) {
         //x is the item to search for
-        //additemFunction is the function to use the output
+        //functionToExecute is the function to use the output
         //target 
 
         const xhr = new XMLHttpRequest();
@@ -12,51 +12,50 @@ class UI {
                 const itemsArray = JSON.parse(this.responseText);
                 for(let i = 0; i < itemsArray.length;  i++){
                     if(itemsArray[i].id == x){
-                        addItemFunction(itemsArray[i], target)
+                        functionToExecute(itemsArray[i], target)
                     }
                 }
             }
         }
         xhr.send();
-        console.log("should work")
     }
     
     loadShopItems(){
-            const xhr = new XMLHttpRequest();
+        const xhr = new XMLHttpRequest();
 
-            xhr.open('GET', 'shop.json', true);
+        xhr.open('GET', 'shop.json', true);
 
-            xhr.onload = function(){
-                if(this.status === 200){
-                    const items = JSON.parse(this.responseText);
-                    
-                    let output = '';
-        
-                    items.forEach(item => {
-                        output += `
-                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 ">
-                        <div class="card card-body text-center mt-5">
-                            <h2 class="itemName">${item.name}</h2>
-                            <div style="overflow: hidden;" class="square">
-                                <img src="imgs/${item.src}" class="image">
-                            </div>
-                            <p>
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                            </p>
-                            <h3>N <span class="price">${item.price}</span></h3>
-                            <button class="addBtn bg-success text-light p-2" id="${item.id}">ADD TO CART</button>
+        xhr.onload = function(){
+            if(this.status === 200){
+                const items = JSON.parse(this.responseText);
+                
+                let output = '';
+    
+                items.forEach(item => {
+                    output += `
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 ">
+                    <div class="card card-body text-center mt-5">
+                        <h2 class="itemName">${item.name}</h2>
+                        <div style="overflow: hidden;" class="square">
+                            <img src="imgs/${item.src}" class="image" style="height: 300px; width: 250px;">
                         </div>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        </p>
+                        <h3>N <span class="price">${item.price}</span></h3>
+                        <button class="addBtn bg-success text-light p-2" id="${item.id}">ADD TO CART</button>
                     </div>
-                        `;
-                    });
-        
-                    document.getElementsByClassName('row')[0].innerHTML = output; 
+                </div>
+                    `;
+                });
+    
+                document.getElementsByClassName('row')[0].innerHTML = output; 
 
-                    Store.displayItems();
-                }
+                Store.displayItems();
             }
-        
-            xhr.send();
+        }
+    
+        xhr.send();
     }
 
     addToCart(target){
@@ -64,17 +63,37 @@ class UI {
             var x = target.id;
             this.find(x, this.addTheItem, target);
         }
-        
+
+        if(target.classList.contains('addedBtn')){
+            var x = target.id;
+            this.deleteClickFromShopping(target);
+        }
     }
 
     reloadAddToCart(item){
         if(item){
             var target = document.getElementById(item.id);
-            this.addTheItem(item, target);
+            this.reloadAddItem(item, target);
         }
     }
 
+    reloadAddItem(item, target){
+        var list = document.getElementById('shop-list');
+        var newItem = document.createElement('tr');
+        var newCartItem = `
+                <td><img src='imgs/${item.src}' class="cart-img"></td>
+                <td>${item.name}</td>
+                <td><input value= '1' class= '${item.id} quantity-input' type='number'></td>
+                <td class="item_price">${item.price}</td>
+                <td><a href="#" class="delete ${item.id} text-danger" id="${item.id}X">X<a></td>
+            
+                `
 
+        newItem.innerHTML = newCartItem;
+        list.append(newItem)
+        ui.updateCartTotal()
+        ui.buttonChange(target)
+    }
 
     addTheItem(item, target){
         var list = document.getElementById('shop-list');
@@ -85,7 +104,6 @@ class UI {
                 <td><input value= '1' class= '${item.id} quantity-input' type='number'></td>
                 <td class="item_price">${item.price}</td>
                 <td><a href="#" class="delete ${item.id} text-danger">X<a></td>
-            
                 `
 
         newItem.innerHTML = newCartItem;
@@ -103,31 +121,49 @@ class UI {
            
             target.innerText = 'REMOVE FROM CART'
         }
-
     }    
     
-    deleteItem(target) {
-        if (target.classList.contains('delete')){
-            
-            target.parentElement.parentElement.remove();
+    //Function that handles click on delete (x) from cart
+    deleteClickFromCart(target) {
+        if (target.classList.contains('delete')){    
 
             let id = target.classList[1];
+            let target_button = document.getElementById(id);
+            Store.removeItem(id);
 
-            this.find(id, this.deleteTheItem, target)
+            target.parentElement.parentElement.remove();
             //(pending) change addtocart button
-            //this.buttonChange(target)
-            
-            Store.removeItem((ui.find(object_targeted)).id)
+
+            this.deleteButtonChange(target_button)
         }
     }
-    deleteTheItem(item, target){
-        Store.remove(item)
+
+    //Function that handles click on remove from cart (x) from the shopping page
+    deleteClickFromShopping(target) {
+        this.deleteButtonChange(target)
+        Store.removeItem(target.id);
+
+        let target_button = document.getElementById(target.id + "X");
+        target_button.parentElement.parentElement.remove();
+
+        this.updateCartTotal();
     }
+
+    deleteButtonChange(target){
+        //for SUCCESSFULLY ADDING TO CART
+        if(target.classList.contains('addedBtn')){
+            target.classList.replace('addedBtn', 'addBtn')
+            target.classList.replace('bg-danger', 'bg-success')
+           
+            target.innerText = 'ADD TO CART'
+        }
+    }    
 
     quantityChange(target){
         let itemID = target.classList[0];
         this.find(itemID, quantityTheChange, target);
     }
+
     quantityTheChange(item, target){
         let newPrice = 0;
 
@@ -165,7 +201,7 @@ class UI {
             }
         }
         else{
-            alert('add to cart');
+            alert('Add to Cart');
         }
     }
 }
